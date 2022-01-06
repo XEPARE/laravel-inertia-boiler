@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Traits\CacheableTrait;
 use App\Helpers\Traits\SearchableScope;
 use App\Helpers\Traits\SearchableTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -12,6 +13,7 @@ use Kra8\Snowflake\HasSnowflakePrimary;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -29,6 +31,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
     use SearchableScope;
     use HasRoles;
     use HasPermissions;
+    use CacheableTrait;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -73,5 +76,10 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function permissionsToArray(): \Illuminate\Database\Eloquent\Collection|array|\Illuminate\Support\Collection
+    {
+        return ($this->hasRole(Role::SUPER_ADMIN) ? Permission::all() : $this->getAllPermissions())->mapWithKeys(fn($permission) => [$permission['name'] => true]);
+    }
 
 }
