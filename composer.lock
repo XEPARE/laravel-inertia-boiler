@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "888a214278672722e6b4dc0b1813ba11",
+    "content-hash": "2d412892bc772998766f58d9b7ca7c50",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2008,75 +2008,6 @@
             "time": "2021-11-30T15:53:04+00:00"
         },
         {
-            "name": "laravel/socialite",
-            "version": "v5.2.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/socialite.git",
-                "reference": "b5c67f187ddcf15529ff7217fa735b132620dfac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/b5c67f187ddcf15529ff7217fa735b132620dfac",
-                "reference": "b5c67f187ddcf15529ff7217fa735b132620dfac",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^6.0|^7.0",
-                "illuminate/http": "^6.0|^7.0|^8.0",
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "league/oauth1-client": "^1.0",
-                "php": "^7.2|^8.0"
-            },
-            "require-dev": {
-                "illuminate/contracts": "^6.0|^7.0",
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^4.0|^5.0|^6.0",
-                "phpunit/phpunit": "^8.0|^9.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Socialite\\SocialiteServiceProvider"
-                    ],
-                    "aliases": {
-                        "Socialite": "Laravel\\Socialite\\Facades\\Socialite"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Socialite\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Laravel wrapper around OAuth 1 & OAuth 2 libraries.",
-            "homepage": "https://laravel.com",
-            "keywords": [
-                "laravel",
-                "oauth"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel/socialite/issues",
-                "source": "https://github.com/laravel/socialite"
-            },
-            "time": "2021-12-07T16:32:57+00:00"
-        },
-        {
             "name": "laravel/tinker",
             "version": "v2.6.3",
             "source": {
@@ -2478,82 +2409,6 @@
                 }
             ],
             "time": "2021-11-21T11:48:40+00:00"
-        },
-        {
-            "name": "league/oauth1-client",
-            "version": "v1.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/oauth1-client.git",
-                "reference": "88dd16b0cff68eb9167bfc849707d2c40ad91ddc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth1-client/zipball/88dd16b0cff68eb9167bfc849707d2c40ad91ddc",
-                "reference": "88dd16b0cff68eb9167bfc849707d2c40ad91ddc",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-openssl": "*",
-                "guzzlehttp/guzzle": "^6.0|^7.0",
-                "guzzlehttp/psr7": "^1.7|^2.0",
-                "php": ">=7.1||>=8.0"
-            },
-            "require-dev": {
-                "ext-simplexml": "*",
-                "friendsofphp/php-cs-fixer": "^2.17",
-                "mockery/mockery": "^1.3.3",
-                "phpstan/phpstan": "^0.12.42",
-                "phpunit/phpunit": "^7.5||9.5"
-            },
-            "suggest": {
-                "ext-simplexml": "For decoding XML-based responses."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev",
-                    "dev-develop": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\OAuth1\\Client\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ben Corlett",
-                    "email": "bencorlett@me.com",
-                    "homepage": "http://www.webcomm.com.au",
-                    "role": "Developer"
-                }
-            ],
-            "description": "OAuth 1.0 Client Library",
-            "keywords": [
-                "Authentication",
-                "SSO",
-                "authorization",
-                "bitbucket",
-                "identity",
-                "idp",
-                "oauth",
-                "oauth1",
-                "single sign on",
-                "trello",
-                "tumblr",
-                "twitter"
-            ],
-            "support": {
-                "issues": "https://github.com/thephpleague/oauth1-client/issues",
-                "source": "https://github.com/thephpleague/oauth1-client/tree/v1.10.0"
-            },
-            "time": "2021-08-15T23:05:49+00:00"
         },
         {
             "name": "lorisleiva/laravel-actions",
@@ -4997,41 +4852,40 @@
             "time": "2021-02-17T12:06:32+00:00"
         },
         {
-            "name": "rene-roscher/pterodactyl-wrapper",
-            "version": "1.2.3",
+            "name": "rinvex/countries",
+            "version": "v8.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Rene-Roscher/pterodactyl-wrapper.git",
-                "reference": "0cf18ec0289e4e7afb4ef34fee3bccc92390e79f"
+                "url": "https://github.com/rinvex/countries.git",
+                "reference": "947031400fecc1c9f2f639d86e2113ee6cb09c37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rene-Roscher/pterodactyl-wrapper/zipball/0cf18ec0289e4e7afb4ef34fee3bccc92390e79f",
-                "reference": "0cf18ec0289e4e7afb4ef34fee3bccc92390e79f",
+                "url": "https://api.github.com/repos/rinvex/countries/zipball/947031400fecc1c9f2f639d86e2113ee6cb09c37",
+                "reference": "947031400fecc1c9f2f639d86e2113ee6cb09c37",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^8.0|^7.0|^6.0|^5.0",
-                "php": "^7.4|^8.0"
+                "php": "^8.0.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^6.4",
-                "phpunit/phpunit": "^9.4"
+                "codedungeon/phpunit-result-printer": "^0.31.0",
+                "phpunit/phpunit": "^9.5.0"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "RexlManu\\Pterodactyl\\PterodactylServiceProvider"
-                    ],
-                    "aliases": {
-                        "Pterodactyl": "RexlManu\\Pterodactyl\\Facades\\Pterodactyl"
-                    }
+                        "Rinvex\\Country\\Providers\\CountryServiceProvider"
+                    ]
                 }
             },
             "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
                 "psr-4": {
-                    "RexlManu\\Pterodactyl\\": "src"
+                    "Rinvex\\Country\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5040,21 +4894,45 @@
             ],
             "authors": [
                 {
-                    "name": "Emmanuel Lampe",
-                    "email": "rexlmanude@gmail.com",
-                    "role": "Developer"
+                    "name": "Rinvex LLC",
+                    "email": "help@rinvex.com",
+                    "homepage": "https://rinvex.com"
+                },
+                {
+                    "name": "Abdelrahman Omran",
+                    "email": "me@omranic.com",
+                    "homepage": "https://omranic.com",
+                    "role": "Project Lead"
+                },
+                {
+                    "name": "The Generous PHP Community",
+                    "homepage": "https://github.com/rinvex/countries/contributors"
                 }
             ],
-            "description": "Api wrapper for pterodactyl",
-            "homepage": "https://github.com/rexlmanu/pterodactyl-api",
+            "description": "Rinvex Countries is a simple and lightweight package for retrieving country details with flexibility. A whole bunch of data including name, demonym, capital, iso codes, dialling codes, geo data, currencies, flags, emoji, and other attributes for all 250 countries worldwide at your fingertips.",
+            "homepage": "https://rinvex.com",
             "keywords": [
-                "pterodactyl",
-                "rexlmanu"
+                "Flexible",
+                "Simple",
+                "countries",
+                "country",
+                "currencies",
+                "demonym",
+                "dialling",
+                "emoji",
+                "flags",
+                "geographic",
+                "languages",
+                "rinvex",
+                "svg"
             ],
             "support": {
-                "source": "https://github.com/Rene-Roscher/pterodactyl-wrapper/tree/1.2.3"
+                "docs": "https://github.com/rinvex/countries/blob/master/README.md",
+                "email": "help@rinvex.com",
+                "issues": "https://github.com/rinvex/countries/issues",
+                "source": "https://github.com/rinvex/countries"
             },
-            "time": "2021-11-08T06:34:35+00:00"
+            "time": "2021-10-05T08:02:55+00:00"
         },
         {
             "name": "sentry/sdk",
@@ -5306,278 +5184,6 @@
                 }
             ],
             "time": "2021-11-16T19:20:42+00:00"
-        },
-        {
-            "name": "socialiteproviders/discord",
-            "version": "4.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Discord.git",
-                "reference": "c6eddeb07ace7473e82d02d4db852dfacf5ef574"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Discord/zipball/c6eddeb07ace7473e82d02d4db852dfacf5ef574",
-                "reference": "c6eddeb07ace7473e82d02d4db852dfacf5ef574",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.2 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Discord\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christopher Eklund",
-                    "email": "eklundchristopher@gmail.com"
-                }
-            ],
-            "description": "Discord OAuth2 Provider for Laravel Socialite",
-            "support": {
-                "source": "https://github.com/SocialiteProviders/Discord/tree/4.1.1"
-            },
-            "time": "2021-01-05T22:03:58+00:00"
-        },
-        {
-            "name": "socialiteproviders/facebook",
-            "version": "4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Facebook.git",
-                "reference": "9b94a9334b5d0f61de8f5a20928d63d4d8f4e00d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Facebook/zipball/9b94a9334b5d0f61de8f5a20928d63d4d8f4e00d",
-                "reference": "9b94a9334b5d0f61de8f5a20928d63d4d8f4e00d",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.2 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Facebook\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oleksandr Prypkhan (Alex Wells)",
-                    "email": "autaut03@googlemail.com"
-                }
-            ],
-            "description": "Facebook (facebook.com) OAuth2 Provider for Laravel Socialite",
-            "support": {
-                "source": "https://github.com/SocialiteProviders/Facebook/tree/4.1.0"
-            },
-            "time": "2020-12-01T23:10:59+00:00"
-        },
-        {
-            "name": "socialiteproviders/github",
-            "version": "4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/GitHub.git",
-                "reference": "25fc481721d74b829b43bff3519e7103d5339e19"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/GitHub/zipball/25fc481721d74b829b43bff3519e7103d5339e19",
-                "reference": "25fc481721d74b829b43bff3519e7103d5339e19",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.2 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\GitHub\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Anton Komarev",
-                    "email": "ell@cybercog.su"
-                }
-            ],
-            "description": "GitHub OAuth2 Provider for Laravel Socialite",
-            "support": {
-                "source": "https://github.com/SocialiteProviders/GitHub/tree/4.1.0"
-            },
-            "time": "2020-12-01T23:10:59+00:00"
-        },
-        {
-            "name": "socialiteproviders/google",
-            "version": "4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Google-Plus.git",
-                "reference": "1cb8f6fb2c0dd0fc8b34e95f69865663fdf0b401"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Google-Plus/zipball/1cb8f6fb2c0dd0fc8b34e95f69865663fdf0b401",
-                "reference": "1cb8f6fb2c0dd0fc8b34e95f69865663fdf0b401",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.2 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Google\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "xstoop",
-                    "email": "myenglishnameisx@gmail.com"
-                }
-            ],
-            "description": "Google OAuth2 Provider for Laravel Socialite",
-            "support": {
-                "source": "https://github.com/SocialiteProviders/Google-Plus/tree/4.1.0"
-            },
-            "time": "2020-12-01T23:10:59+00:00"
-        },
-        {
-            "name": "socialiteproviders/manager",
-            "version": "4.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Manager.git",
-                "reference": "0f5e82af0404df0080bdc5c105cef936c1711524"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/0f5e82af0404df0080bdc5c105cef936c1711524",
-                "reference": "0f5e82af0404df0080bdc5c105cef936c1711524",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "laravel/socialite": "~4.0|~5.0",
-                "php": "^7.2 || ^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.2",
-                "phpunit/phpunit": "^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "SocialiteProviders\\Manager\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Manager\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andy Wendt",
-                    "email": "andy@awendt.com"
-                },
-                {
-                    "name": "Anton Komarev",
-                    "email": "a.komarev@cybercog.su"
-                },
-                {
-                    "name": "Miguel Piedrafita",
-                    "email": "soy@miguelpiedrafita.com"
-                },
-                {
-                    "name": "atymic",
-                    "email": "atymicq@gmail.com",
-                    "homepage": "https://atymic.dev"
-                }
-            ],
-            "description": "Easily add new or override built-in providers in Laravel Socialite.",
-            "homepage": "https://socialiteproviders.com/",
-            "support": {
-                "issues": "https://github.com/SocialiteProviders/Manager/issues",
-                "source": "https://github.com/SocialiteProviders/Manager/tree/4.0.1"
-            },
-            "time": "2020-12-01T23:09:06+00:00"
-        },
-        {
-            "name": "socialiteproviders/twitch",
-            "version": "5.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Twitch.git",
-                "reference": "7accf30ae7a3139b757b4ca8f34989c09a3dbee7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Twitch/zipball/7accf30ae7a3139b757b4ca8f34989c09a3dbee7",
-                "reference": "7accf30ae7a3139b757b4ca8f34989c09a3dbee7",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.2 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Twitch\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Twitch OAuth2 Provider for Laravel Socialite",
-            "support": {
-                "source": "https://github.com/SocialiteProviders/Twitch/tree/5.3.1"
-            },
-            "time": "2020-12-01T23:10:59+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -8659,48 +8265,6 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.10.0"
             },
             "time": "2021-03-09T10:59:23+00:00"
-        },
-        {
-            "name": "xpaw/php-minecraft-query",
-            "version": "4.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/xPaw/PHP-Minecraft-Query.git",
-                "reference": "c7257e7c3d18c14cd476910f1516f93f405f54ee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/xPaw/PHP-Minecraft-Query/zipball/c7257e7c3d18c14cd476910f1516f93f405f54ee",
-                "reference": "c7257e7c3d18c14cd476910f1516f93f405f54ee",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "xPaw\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "PHP library to query Minecraft servers",
-            "keywords": [
-                "minecraft"
-            ],
-            "support": {
-                "source": "https://github.com/xPaw/PHP-Minecraft-Query/tree/4.0.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/xPaw",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-06-18T13:18:40+00:00"
         }
     ],
     "packages-dev": [

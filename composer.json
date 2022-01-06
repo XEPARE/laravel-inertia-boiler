@@ -20,6 +20,7 @@
         "mollie/laravel-mollie": "^2.16",
         "predis/predis": "^1.1",
         "rene-roscher/flysystem-sftp": "^2.0",
+        "rinvex/countries": "^8.1",
         "sentry/sentry-laravel": "^2.10",
         "spatie/laravel-permission": "^5.4",
         "tightenco/ziggy": "^1.0"
