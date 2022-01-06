@@ -25,16 +25,16 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'image', 'max:1024'],
-            'sex' => 'nullable|in:MALE,FEMALE,DIVERS',
+//            'sex' => 'nullable|in:MALE,FEMALE,DIVERS',
 //            'country' => ['nullable', Rule::in(collect(countries())->map(fn($o) => $o['iso_3166_1_alpha2'])->values())],
 //            'language' => ['required', Rule::in(collect($this->getAvailableLanguages(true))->keys())],
             'name' => 'required|string|max:255',
-            'firstname' => 'nullable|string|max:255',
-            'lastname' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:255',
-            'postcode' => 'nullable|digits:5|numeric',
-            'street' => 'nullable|string|max:255',
-            'number' => 'nullable|string|max:255',
+//            'firstname' => 'nullable|string|max:255',
+//            'lastname' => 'nullable|string|max:255',
+//            'city' => 'nullable|string|max:255',
+//            'postcode' => 'nullable|digits:5|numeric',
+//            'street' => 'nullable|string|max:255',
+//            'number' => 'nullable|string|max:255',
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -49,15 +49,15 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'email' => $input['email'],
                 'name' => $collection->get('name'),
-                'firstname' => $collection->get('firstname'),
-                'lastname' => $collection->get('lastname'),
-                'city' => $collection->get('city'),
-                'postcode' => $collection->get('postcode'),
-                'street' => $collection->get('street'),
-                'number' => $collection->get('number'),
+//                'firstname' => $collection->get('firstname'),
+//                'lastname' => $collection->get('lastname'),
+//                'city' => $collection->get('city'),
+//                'postcode' => $collection->get('postcode'),
+//                'street' => $collection->get('street'),
+//                'number' => $collection->get('number'),
 //                'country' => $collection->get('country'),
-                'sex' => $collection->get('sex'),
-                'language' => $collection->get('language'),
+//                'sex' => $collection->get('sex'),
+//                'language' => $collection->get('language'),
             ])->save();
         }
     }
