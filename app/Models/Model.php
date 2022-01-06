@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kra8\Snowflake\HasSnowflakePrimary;
 
+/**
+ * @mixin IdeHelperModel
+ */
 class Model extends \Illuminate\Database\Eloquent\Model
 {
     use HasFactory, HasSnowflakePrimary, SearchableTrait, SearchableScope;

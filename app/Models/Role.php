@@ -6,6 +6,9 @@ namespace App\Models;
 
 use App\Helpers\Traits\SearchableTrait;
 
+/**
+ * @mixin IdeHelperRole
+ */
 class Role extends \Spatie\Permission\Models\Role
 {
     const SUPER_ADMIN = 'Super Admin';

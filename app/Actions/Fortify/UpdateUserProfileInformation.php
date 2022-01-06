@@ -27,7 +27,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'photo' => ['nullable', 'image', 'max:1024'],
             'sex' => 'nullable|in:MALE,FEMALE,DIVERS',
 //            'country' => ['nullable', Rule::in(collect(countries())->map(fn($o) => $o['iso_3166_1_alpha2'])->values())],
-            'language' => ['required', Rule::in(collect($this->getAvailableLanguages(true))->keys())],
+//            'language' => ['required', Rule::in(collect($this->getAvailableLanguages(true))->keys())],
             'name' => 'required|string|max:255',
             'firstname' => 'nullable|string|max:255',
             'lastname' => 'nullable|string|max:255',

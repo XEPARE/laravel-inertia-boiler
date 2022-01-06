@@ -17,6 +17,9 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @mixin IdeHelperUser
+ */
 class User extends Authenticatable /*implements MustVerifyEmail*/
 {
     use HasApiTokens;
@@ -42,9 +45,8 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password', 'firstname', 'lastname', 'country', 'language', 'postcode', 'street', 'number',
+        'profile_photo_path', 'sex', 'city', 'state',
     ];
 
     /**
