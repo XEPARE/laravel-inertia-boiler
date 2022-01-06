@@ -7,7 +7,7 @@
   \********************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"Hello :name":"Hallo :name"}');
+module.exports = JSON.parse('{"Hello :name":"Hallo :name","Log in":"Einloggen","Register":"Anmelden"}');
 
 /***/ })
 

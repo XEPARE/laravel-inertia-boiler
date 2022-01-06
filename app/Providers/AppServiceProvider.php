@@ -24,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \App\Models\Model::preventLazyLoading();
+        \App::setLocale('de');
     }
 }

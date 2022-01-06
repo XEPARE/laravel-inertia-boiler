@@ -1,3 +1,5 @@
 {
-    "Hello :name": "Hallo :name"
+    "Hello :name": "Hallo :name",
+    "Log in": "Einloggen",
+    "Register": "Anmelden"
 }
