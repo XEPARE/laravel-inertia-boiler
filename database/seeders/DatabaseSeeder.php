@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         \DB::transaction(function () {
             return tap(User::create([
+                'name' => 'Admin',
                 'firstname' => 'Max',
                 'lastname' => 'Musterwiese',
                 'email' => 'admin@example.com',
