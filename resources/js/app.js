@@ -4,8 +4,13 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 
+// Plugins
 import { i18nVue } from 'laravel-vue-i18n'
 
+// Mixins
+import * as base from './base';
+
+// Misc
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({
@@ -18,6 +23,7 @@ createInertiaApp({
             .use(i18nVue)
             /* Mixins */
             .mixin({ methods: { route } })
+            .mixin(base)
             .mount(el);
     },
 });
