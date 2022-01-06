@@ -9,7 +9,7 @@ use App\Helpers\Traits\SearchableTrait;
 class Role extends \Spatie\Permission\Models\Role
 {
     const SUPER_ADMIN = 'Super Admin';
-    const DEMO = 'DEMO';
+    const ADMIN = 'Admin';
 
     use SearchableTrait;
 
