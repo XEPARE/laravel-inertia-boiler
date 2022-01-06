@@ -5,7 +5,8 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "8.0",
+        "php": "^8.0",
+        "ext-json": "*",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.4.3",
@@ -15,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "lorisleiva/laravel-actions": "^2.2",
+        "matriphe/iso-639": "^1.2",
         "mollie/laravel-mollie": "^2.16",
         "predis/predis": "^1.1",
         "rene-roscher/flysystem-sftp": "^2.0",
@@ -26,8 +28,7 @@
         "socialiteproviders/google": "^4.1",
         "socialiteproviders/twitch": "^5.3",
         "tightenco/ziggy": "^1.0",
-        "xpaw/php-minecraft-query": "^4.0",
-        "ext-json": "*"
+        "xpaw/php-minecraft-query": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
