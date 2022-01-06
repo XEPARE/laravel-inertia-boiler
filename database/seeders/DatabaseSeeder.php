@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -24,8 +25,8 @@ class DatabaseSeeder extends Seeder
                 'password' => \Hash::make('123admin456'),
                 'email_verified_at' => now()
             ]), function (User $user) {
-//                $user->refresh();
-//                $user->assignRole('super-admin');
+                $user->refresh();
+                $user->assignRole(Role::SUPER_ADMIN);
             });
         });
     }
