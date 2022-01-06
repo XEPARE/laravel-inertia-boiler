@@ -1,0 +1,42 @@
+version: '3.3'
+
+networks:
+  edge:
+    external: true
+
+services:
+  app:
+    image: ghcr.io/developments-world/{REF}:latest
+    env_file: '.env'
+    dns:
+      - 8.8.8.8
+      - 4.4.4.4
+    environment:
+      DB_HOST: '10.0.0.1'
+      DB_PASSWORD: ''
+      DB_USERNAME: 'root'
+      DB_DATABASE: 'webinterface'
+      REDIS_HOST: '10.0.0.1'
+      APP_URL: 'https://yourhost.com'
+      APP_ENV: 'production'
+      HOSTNAME: "{{.Node.Hostname}}-{{.Task.Slot}}"
+    networks:
+      edge:
+    deploy:
+      mode: replicated
+      replicas: 4
+      endpoint_mode: dnsrr
+      update_config:
+        failure_action: rollback
+        parallelism: 2
+        delay: 15s
+      restart_policy:
+         condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.interface.entrypoints=https"
+        - "traefik.http.routers.interface.service=interface"
+        - "traefik.http.routers.interface.rule=Host(`yourhost.com`)"
+        - "traefik.http.routers.interface.tls=true"
+        - "traefik.http.services.interface.loadbalancer.server.port=80"
+        - "traefik.docker.network=edge"
