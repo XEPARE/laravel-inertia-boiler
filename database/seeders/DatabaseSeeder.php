@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            XepareSeeder::class,
+        ]);
 
         \DB::transaction(function () {
             return tap(User::create([

@@ -29,7 +29,7 @@ class XepareSeeder extends Seeder
         /**
          * Register custom permissions
          */
-        foreach (config('rservices.permissions') as $value) {
+        foreach (config('xepare.permissions') as $value) {
             Permission::create([
                 'name' => $value
             ]);
