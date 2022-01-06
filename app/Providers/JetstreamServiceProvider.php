@@ -52,7 +52,7 @@ class JetstreamServiceProvider extends ServiceProvider
     function configureShares()
     {
         Inertia::share('auth', fn() => [
-            'can' => user() ? user()->getCachedPermissions() : [],
+            'can' => user() ? user()->permissionsToArray() : [],
         ]);
     }
 
