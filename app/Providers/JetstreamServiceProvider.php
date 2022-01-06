@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
 use Laravel\Jetstream\Jetstream;
 
 class JetstreamServiceProvider extends ServiceProvider
@@ -26,6 +27,7 @@ class JetstreamServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configurePermissions();
+        $this->configureShares();
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
     }
@@ -46,4 +48,12 @@ class JetstreamServiceProvider extends ServiceProvider
             'delete',
         ]);
     }
+
+    function configureShares()
+    {
+        Inertia::share('auth', fn() => [
+            'can' => user() ? user()->getCachedPermissions() : [],
+        ]);
+    }
+
 }
