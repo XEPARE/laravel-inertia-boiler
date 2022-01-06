@@ -7,6 +7,9 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
+        './resources/js/**/**/*.vue',
+        './resources/js/**/**/**/*.vue',
+        './resources/js/**/**/**/**/*.vue',
     ],
 
     theme: {
@@ -17,5 +20,5 @@ module.exports = {
         },
     },
 
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/line-clamp')],
 };
