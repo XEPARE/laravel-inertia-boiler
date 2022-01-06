@@ -26,7 +26,8 @@
         "socialiteproviders/google": "^4.1",
         "socialiteproviders/twitch": "^5.3",
         "tightenco/ziggy": "^1.0",
-        "xpaw/php-minecraft-query": "^4.0"
+        "xpaw/php-minecraft-query": "^4.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
