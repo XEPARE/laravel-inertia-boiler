@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use Spatie\Permission\Models\Permission;
 
 class XepareSeeder extends Seeder
 {
@@ -32,6 +33,19 @@ class XepareSeeder extends Seeder
             Permission::create([
                 'name' => $value
             ]);
+        }
+
+        /**
+         * Register roles & attach permissions
+         */
+        foreach (config('xepare.roles') as $name => $models) {
+            /** @var Role $role */
+            $role = Role::create(['name' => $name]);
+            if (is_null($name)) continue;
+            // Give permissions
+            collect($models)->map(fn($permissions, $model) => collect($permissions)->values()->map(
+                fn($type) => sprintf('%s.%s', Str::snake(class_basename($model), '.'), $type)
+            ))->each(fn($data) => $data->values()->each(fn($permission) => $role->givePermissionTo($permission)));
         }
     }
 }
