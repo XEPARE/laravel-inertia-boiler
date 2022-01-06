@@ -25729,12 +25729,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./base */ "./resources/js/base.js");
+/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_base__WEBPACK_IMPORTED_MODULE_4__);
 var _window$document$getE;
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+ // Plugins
+
+ // Mixins
+
+ // Misc
 
 var appName = ((_window$document$getE = window.document.getElementsByTagName('title')[0]) === null || _window$document$getE === void 0 ? void 0 : _window$document$getE.innerText) || 'Laravel';
 (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.createInertiaApp)({
@@ -25753,16 +25761,195 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName('ti
       render: function render() {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)(app, props);
       }
-    }).use(plugin).mixin({
+    })
+    /* Plugins */
+    .use(plugin).use(laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_3__.i18nVue)
+    /* Mixins */
+    .mixin({
       methods: {
         route: route
       }
-    }).mount(el);
+    }).mixin(_base__WEBPACK_IMPORTED_MODULE_4__).mount(el);
   }
 });
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init({
   color: '#4B5563'
 });
+
+/***/ }),
+
+/***/ "./resources/js/base.js":
+/*!******************************!*\
+  !*** ./resources/js/base.js ***!
+  \******************************/
+/***/ ((module) => {
+
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+module.exports = {
+  methods: (_methods = {
+    /**
+     * Translate the given key.
+     */
+    __: function __(key) {
+      var replace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var translation = this.$page.props.language[key] ? this.$page.props.language[key] : key;
+      Object.keys(replace).forEach(function (key) {
+        translation = translation.replace(':' + key, replace[key]);
+      });
+      return translation;
+    },
+
+    /**
+     * Translate the given key with basic pluralization.
+     */
+    __n: function __n(key, number) {
+      var replace = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      var options = key.split('|');
+      key = options[1];
+
+      if (number === 1) {
+        key = options[0];
+      }
+
+      return tt(key, replace);
+    },
+    can: function can(permission) {
+      return !!this.$page.props.auth.can[permission];
+    },
+    dateTime: function dateTime(value) {
+      return moment(value).format('DD.MM.YYYY - HH:mm');
+    },
+    capitalizeFirstLetter: function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+    bytesToHuman: function bytesToHuman(bytes) {
+      if (bytes === 0) {
+        return '0 kB';
+      }
+
+      var i = Math.floor(Math.log(bytes) / Math.log(1024));
+      return "".concat(Number((bytes / Math.pow(1024, i)).toFixed(2)), " ").concat(['Bytes', 'kB', 'MB', 'GB', 'TB'][i]);
+    },
+    megabytesToHuman: function megabytesToHuman(mb) {
+      return this.bytesToHuman(this.megabytesToBytes(mb));
+    },
+    bytesToMegabytes: function bytesToMegabytes(bytes) {
+      return Math.floor(bytes / 1024 / 1024);
+    },
+    megabytesToBytes: function megabytesToBytes(mb) {
+      return Math.floor(mb * 1024 * 1024);
+    },
+    cleanDirectoryPath: function cleanDirectoryPath(path) {
+      path.replace(/(\/(\/*))|(^$)/g, '/');
+    },
+    fileBitsToString: function fileBitsToString(mode, directory) {
+      var m = parseInt(mode, 8);
+      var buf = '';
+      'dalTLDpSugct?'.split('').forEach(function (c, i) {
+        if ((m & 1 << 32 - 1 - i) !== 0) {
+          buf = buf + c;
+        }
+      });
+
+      if (buf.length === 0) {
+        // If the file is directory, make sure it has the directory flag.
+        if (directory) {
+          buf = 'd';
+        } else {
+          buf = '-';
+        }
+      }
+
+      'rwxrwxrwx'.split('').forEach(function (c, i) {
+        if ((m & 1 << 9 - 1 - i) !== 0) {
+          buf = buf + c;
+        } else {
+          buf = buf + '-';
+        }
+      });
+      return buf;
+    },
+    encodePathSegments: function encodePathSegments(path) {
+      return path.split('/').map(function (s) {
+        return encodeURIComponent(s);
+      }).join('/');
+    },
+    hashToPath: function hashToPath(hash) {
+      return hash.length > 0 ? decodeURIComponent(hash.substr(1)) : '/';
+    },
+    isFileArchiveType: function isFileArchiveType(file) {
+      return file.is_file && ['application/vnd.rar', // .rar
+      'application/x-rar-compressed', // .rar (2)
+      'application/x-tar', // .tar
+      'application/x-br', // .tar.br
+      'application/x-bzip2', // .tar.bz2, .bz2
+      'application/gzip', // .tar.gz, .gz
+      'application/x-gzip', 'application/x-lzip', // .tar.lz4, .lz4 (not sure if this mime type is correct)
+      'application/x-sz', // .tar.sz, .sz (not sure if this mime type is correct)
+      'application/x-xz', // .tar.xz, .xz
+      'application/zstd', // .tar.zst, .zst
+      'application/zip' // .zip
+      ].indexOf(file.mimetype) >= 0;
+    },
+    isFileEditable: function isFileEditable(file) {
+      if (this.isFileArchiveType(file) || !file.is_file) return false;
+      var matches = ['application/jar', 'application/octet-stream', 'inode/directory', /^image\//];
+      return matches.every(function (m) {
+        return !file.mimetype.match(m);
+      });
+    },
+    isDirectory: function isDirectory(file) {
+      return file.mimetype === 'inode/directory';
+    }
+  }, _defineProperty(_methods, "encodePathSegments", function encodePathSegments(path) {
+    return path.split('/').map(function (s) {
+      return encodeURIComponent(s);
+    }).join('/');
+  }), _defineProperty(_methods, "hashToPath", function hashToPath(hash) {
+    return hash.length > 0 ? decodeURIComponent(hash.substr(1)) : '/';
+  }), _defineProperty(_methods, "nl2br", function nl2br(text) {
+    var reg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : /\n\r/g;
+
+    if (text && text !== null) {
+      var i,
+          s = '',
+          lines = text.split(reg),
+          l = lines.length;
+
+      for (i = 0; i < l; ++i) {
+        s += lines[i];
+        i !== l - 1 && (s += '<br/>');
+      }
+
+      return s;
+    }
+
+    return text;
+  }), _defineProperty(_methods, "copyToClipboard", function copyToClipboard(value) {
+    var _this = this;
+
+    this.$page.props.jetstream.flash.banner = this.__('The desired value has been saved in the clipboard');
+    window.navigator.clipboard.writeText(value);
+    setTimeout(function () {
+      _this.$page.props.jetstream.flash = {};
+    }, 3 * 1000);
+  }), _defineProperty(_methods, "singularize", function singularize(word) {
+    var endings = {
+      s: '',
+      ies: 'y'
+    };
+    return word.replace(new RegExp("(".concat(Object.keys(endings).join('|'), ")$")), function (r) {
+      return endings[r];
+    });
+  }), _defineProperty(_methods, "asset", function asset(path) {
+    var base_path = window._asset || location.origin;
+    if (!path.startsWith('/')) path = "/" + path;
+    return base_path + path;
+  }), _methods)
+};
 
 /***/ }),
 
@@ -26635,6 +26822,570 @@ var bind = __webpack_require__(/*! function-bind */ "./node_modules/function-bin
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
+
+/***/ }),
+
+/***/ "./node_modules/laravel-vue-i18n/dist/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/laravel-vue-i18n/dist/index.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.i18nVue = exports.trans_choice = exports.reset = exports.getActiveLanguage = exports.transChoice = exports.trans = exports.loadLanguageAsync = void 0;
+const vue_1 = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+const pluralization_1 = __webpack_require__(/*! ./pluralization */ "./node_modules/laravel-vue-i18n/dist/pluralization.js");
+/**
+ * Resolves the lang location, on a Laravel App.
+ */
+const defaultResolve = (lang) => {
+    return __webpack_require__("./resources/lang lazy recursive ^\\.\\/.*\\.json$")(`./${lang}.json`);
+};
+/**
+ * The default options, for the plugin.
+ */
+const DEFAULT_OPTIONS = {
+    lang: document.documentElement.lang || 'en',
+    resolve: defaultResolve
+};
+/**
+ * Stores the current options.
+ */
+let options = DEFAULT_OPTIONS;
+/**
+ * Stores the loaded languages.
+ */
+let loaded = [];
+/**
+ * The active messages to use.
+ */
+const activeMessages = (0, vue_1.reactive)({});
+/**
+ * Loads the language file.
+ */
+function loadLanguageAsync(lang) {
+    const loadedLang = loaded.find((row) => row.lang === lang);
+    if (loadedLang) {
+        return Promise.resolve(setLanguage(loadedLang));
+    }
+    return options
+        .resolve(lang)
+        .then(({ default: messages }) => {
+        const data = { lang, messages };
+        loaded.push(data);
+        return setLanguage(data);
+    })
+        .catch((err) => {
+        throw new TypeError(`Cannot load lang: ${lang} file: ${err.message}`);
+    });
+}
+exports.loadLanguageAsync = loadLanguageAsync;
+/**
+ * Get the translation for the given key.
+ */
+function trans(key, replacements = {}) {
+    if (!activeMessages[key]) {
+        activeMessages[key] = key;
+    }
+    return makeReplacements(activeMessages[key], replacements);
+}
+exports.trans = trans;
+/**
+ * Translates the given message based on a count.
+ */
+function transChoice(key, number, replacements = {}) {
+    const message = trans(key, replacements);
+    replacements.count = number.toString();
+    return makeReplacements((0, pluralization_1.choose)(message, number, options.lang), replacements);
+}
+exports.transChoice = transChoice;
+/**
+ * Returns the current active language.
+ */
+function getActiveLanguage() {
+    return options.lang;
+}
+exports.getActiveLanguage = getActiveLanguage;
+/**
+ * Sets the language messages to the activeMessages.
+ */
+function setLanguage({ lang, messages }) {
+    document.querySelector('html').setAttribute('lang', lang);
+    options.lang = lang;
+    for (const [key, value] of Object.entries(messages)) {
+        activeMessages[key] = value;
+    }
+    for (const [key] of Object.entries(activeMessages)) {
+        if (!messages[key]) {
+            activeMessages[key] = null;
+        }
+    }
+    return lang;
+}
+/**
+ * Make the place-holder replacements on a line.
+ */
+function makeReplacements(message, replacements) {
+    const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+    Object.entries(replacements || []).forEach(([key, value]) => {
+        value = value.toString();
+        message = message
+            .replace(`:${key}`, value)
+            .replace(`:${key.toUpperCase()}`, value.toUpperCase())
+            .replace(`:${capitalize(key)}`, capitalize(value));
+    });
+    return message;
+}
+/**
+ * Resets all the data stored in memory.
+ */
+const reset = () => {
+    loaded = [];
+    options = DEFAULT_OPTIONS;
+    for (const [key] of Object.entries(activeMessages)) {
+        activeMessages[key] = null;
+    }
+};
+exports.reset = reset;
+/**
+ * Alias to `transChoice` to mimic the same function name from Laravel Framework.
+ */
+exports.trans_choice = transChoice;
+/**
+ * The Vue Plugin. to be used on your Vue app like this: `app.use(i18nVue)`
+ */
+exports.i18nVue = {
+    install: (app, currentOptions = {}) => {
+        options = Object.assign(Object.assign({}, options), currentOptions);
+        app.config.globalProperties.$t = (key, replacements) => trans(key, replacements);
+        app.config.globalProperties.$tChoice = (key, number, replacements) => transChoice(key, number, replacements);
+        loadLanguageAsync(options.lang);
+    }
+};
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/laravel-vue-i18n/dist/pluralization.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/laravel-vue-i18n/dist/pluralization.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.choose = void 0;
+const get_plural_index_1 = __webpack_require__(/*! ./utils/get-plural-index */ "./node_modules/laravel-vue-i18n/dist/utils/get-plural-index.js");
+/**
+ * Select a proper translation string based on the given number.
+ */
+function choose(message, number, lang) {
+    let segments = message.split('|');
+    const extracted = extract(segments, number);
+    if (extracted !== null) {
+        return extracted.trim();
+    }
+    segments = stripConditions(segments);
+    const pluralIndex = (0, get_plural_index_1.getPluralIndex)(lang, number);
+    if (segments.length === 1 || !segments[pluralIndex]) {
+        return segments[0];
+    }
+    return segments[pluralIndex];
+}
+exports.choose = choose;
+/**
+ * Extract a translation string using inline conditions.
+ */
+function extract(segments, number) {
+    for (const part of segments) {
+        let line = extractFromString(part, number);
+        if (line !== null) {
+            return line;
+        }
+    }
+    return null;
+}
+/**
+ * Get the translation string if the condition matches.
+ */
+function extractFromString(part, number) {
+    const matches = part.match(/^[\{\[]([^\[\]\{\}]*)[\}\]](.*)/s) || [];
+    if (matches.length !== 3) {
+        return null;
+    }
+    const condition = matches[1];
+    const value = matches[2];
+    if (condition.includes(',')) {
+        let [from, to] = condition.split(',');
+        if (to === '*' && number >= parseFloat(from)) {
+            return value;
+        }
+        else if (from === '*' && number <= parseFloat(to)) {
+            return value;
+        }
+        else if (number >= parseFloat(from) && number <= parseFloat(to)) {
+            return value;
+        }
+    }
+    return parseFloat(condition) === number ? value : null;
+}
+/**
+ * Strip the inline conditions from each segment, just leaving the text.
+ */
+function stripConditions(segments) {
+    return segments.map((part) => part.replace(/^[\{\[]([^\[\]\{\}]*)[\}\]]/, ''));
+}
+//# sourceMappingURL=pluralization.js.map
+
+/***/ }),
+
+/***/ "./node_modules/laravel-vue-i18n/dist/utils/get-plural-index.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/laravel-vue-i18n/dist/utils/get-plural-index.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getPluralIndex = void 0;
+/**
+ * Get the index to use for pluralization.
+ *
+ * The plural rules are derived from code of the Zend Framework (2010-09-25), which
+ * is subject to the new BSD license (https://framework.zend.com/license)
+ * Copyright (c) 2005-2010 - Zend Technologies USA Inc. (http://www.zend.com)
+ */
+function getPluralIndex(lang, number) {
+    switch (lang) {
+        case 'az':
+        case 'az_AZ':
+        case 'bo':
+        case 'bo_CN':
+        case 'bo_IN':
+        case 'dz':
+        case 'dz_BT':
+        case 'id':
+        case 'id_ID':
+        case 'ja':
+        case 'ja_JP':
+        case 'jv':
+        case 'ka':
+        case 'ka_GE':
+        case 'km':
+        case 'km_KH':
+        case 'kn':
+        case 'kn_IN':
+        case 'ko':
+        case 'ko_KR':
+        case 'ms':
+        case 'ms_MY':
+        case 'th':
+        case 'th_TH':
+        case 'tr':
+        case 'tr_CY':
+        case 'tr_TR':
+        case 'vi':
+        case 'vi_VN':
+        case 'zh':
+        case 'zh_CN':
+        case 'zh_HK':
+        case 'zh_SG':
+        case 'zh_TW':
+            return 0;
+        case 'af':
+        case 'af_ZA':
+        case 'bn':
+        case 'bn_BD':
+        case 'bn_IN':
+        case 'bg':
+        case 'bg_BG':
+        case 'ca':
+        case 'ca_AD':
+        case 'ca_ES':
+        case 'ca_FR':
+        case 'ca_IT':
+        case 'da':
+        case 'da_DK':
+        case 'de':
+        case 'de_AT':
+        case 'de_BE':
+        case 'de_CH':
+        case 'de_DE':
+        case 'de_LI':
+        case 'de_LU':
+        case 'el':
+        case 'el_CY':
+        case 'el_GR':
+        case 'en':
+        case 'en_AG':
+        case 'en_AU':
+        case 'en_BW':
+        case 'en_CA':
+        case 'en_DK':
+        case 'en_GB':
+        case 'en_HK':
+        case 'en_IE':
+        case 'en_IN':
+        case 'en_NG':
+        case 'en_NZ':
+        case 'en_PH':
+        case 'en_SG':
+        case 'en_US':
+        case 'en_ZA':
+        case 'en_ZM':
+        case 'en_ZW':
+        case 'eo':
+        case 'eo_US':
+        case 'es':
+        case 'es_AR':
+        case 'es_BO':
+        case 'es_CL':
+        case 'es_CO':
+        case 'es_CR':
+        case 'es_CU':
+        case 'es_DO':
+        case 'es_EC':
+        case 'es_ES':
+        case 'es_GT':
+        case 'es_HN':
+        case 'es_MX':
+        case 'es_NI':
+        case 'es_PA':
+        case 'es_PE':
+        case 'es_PR':
+        case 'es_PY':
+        case 'es_SV':
+        case 'es_US':
+        case 'es_UY':
+        case 'es_VE':
+        case 'et':
+        case 'et_EE':
+        case 'eu':
+        case 'eu_ES':
+        case 'eu_FR':
+        case 'fa':
+        case 'fa_IR':
+        case 'fi':
+        case 'fi_FI':
+        case 'fo':
+        case 'fo_FO':
+        case 'fur':
+        case 'fur_IT':
+        case 'fy':
+        case 'fy_DE':
+        case 'fy_NL':
+        case 'gl':
+        case 'gl_ES':
+        case 'gu':
+        case 'gu_IN':
+        case 'ha':
+        case 'ha_NG':
+        case 'he':
+        case 'he_IL':
+        case 'hu':
+        case 'hu_HU':
+        case 'is':
+        case 'is_IS':
+        case 'it':
+        case 'it_CH':
+        case 'it_IT':
+        case 'ku':
+        case 'ku_TR':
+        case 'lb':
+        case 'lb_LU':
+        case 'ml':
+        case 'ml_IN':
+        case 'mn':
+        case 'mn_MN':
+        case 'mr':
+        case 'mr_IN':
+        case 'nah':
+        case 'nb':
+        case 'nb_NO':
+        case 'ne':
+        case 'ne_NP':
+        case 'nl':
+        case 'nl_AW':
+        case 'nl_BE':
+        case 'nl_NL':
+        case 'nn':
+        case 'nn_NO':
+        case 'no':
+        case 'om':
+        case 'om_ET':
+        case 'om_KE':
+        case 'or':
+        case 'or_IN':
+        case 'pa':
+        case 'pa_IN':
+        case 'pa_PK':
+        case 'pap':
+        case 'pap_AN':
+        case 'pap_AW':
+        case 'pap_CW':
+        case 'ps':
+        case 'ps_AF':
+        case 'pt':
+        case 'pt_BR':
+        case 'pt_PT':
+        case 'so':
+        case 'so_DJ':
+        case 'so_ET':
+        case 'so_KE':
+        case 'so_SO':
+        case 'sq':
+        case 'sq_AL':
+        case 'sq_MK':
+        case 'sv':
+        case 'sv_FI':
+        case 'sv_SE':
+        case 'sw':
+        case 'sw_KE':
+        case 'sw_TZ':
+        case 'ta':
+        case 'ta_IN':
+        case 'ta_LK':
+        case 'te':
+        case 'te_IN':
+        case 'tk':
+        case 'tk_TM':
+        case 'ur':
+        case 'ur_IN':
+        case 'ur_PK':
+        case 'zu':
+        case 'zu_ZA':
+            return number === 1 ? 0 : 1;
+        case 'am':
+        case 'am_ET':
+        case 'bh':
+        case 'fil':
+        case 'fil_PH':
+        case 'fr':
+        case 'fr_BE':
+        case 'fr_CA':
+        case 'fr_CH':
+        case 'fr_FR':
+        case 'fr_LU':
+        case 'gun':
+        case 'hi':
+        case 'hi_IN':
+        case 'hy':
+        case 'hy_AM':
+        case 'ln':
+        case 'ln_CD':
+        case 'mg':
+        case 'mg_MG':
+        case 'nso':
+        case 'nso_ZA':
+        case 'ti':
+        case 'ti_ER':
+        case 'ti_ET':
+        case 'wa':
+        case 'wa_BE':
+        case 'xbr':
+            return number === 0 || number === 1 ? 0 : 1;
+        case 'be':
+        case 'be_BY':
+        case 'bs':
+        case 'bs_BA':
+        case 'hr':
+        case 'hr_HR':
+        case 'ru':
+        case 'ru_RU':
+        case 'ru_UA':
+        case 'sr':
+        case 'sr_ME':
+        case 'sr_RS':
+        case 'uk':
+        case 'uk_UA':
+            return number % 10 == 1 && number % 100 != 11
+                ? 0
+                : number % 10 >= 2 && number % 10 <= 4 && (number % 100 < 10 || number % 100 >= 20)
+                    ? 1
+                    : 2;
+        case 'cs':
+        case 'cs_CZ':
+        case 'sk':
+        case 'sk_SK':
+            return number == 1 ? 0 : number >= 2 && number <= 4 ? 1 : 2;
+        case 'ga':
+        case 'ga_IE':
+            return number == 1 ? 0 : number == 2 ? 1 : 2;
+        case 'lt':
+        case 'lt_LT':
+            return number % 10 == 1 && number % 100 != 11
+                ? 0
+                : number % 10 >= 2 && (number % 100 < 10 || number % 100 >= 20)
+                    ? 1
+                    : 2;
+        case 'sl':
+        case 'sl_SI':
+            return number % 100 == 1 ? 0 : number % 100 == 2 ? 1 : number % 100 == 3 || number % 100 == 4 ? 2 : 3;
+        case 'mk':
+        case 'mk_MK':
+            return number % 10 == 1 ? 0 : 1;
+        case 'mt':
+        case 'mt_MT':
+            return number == 1
+                ? 0
+                : number == 0 || (number % 100 > 1 && number % 100 < 11)
+                    ? 1
+                    : number % 100 > 10 && number % 100 < 20
+                        ? 2
+                        : 3;
+        case 'lv':
+        case 'lv_LV':
+            return number == 0 ? 0 : number % 10 == 1 && number % 100 != 11 ? 1 : 2;
+        case 'pl':
+        case 'pl_PL':
+            return number == 1 ? 0 : number % 10 >= 2 && number % 10 <= 4 && (number % 100 < 12 || number % 100 > 14) ? 1 : 2;
+        case 'cy':
+        case 'cy_GB':
+            return number == 1 ? 0 : number == 2 ? 1 : number == 8 || number == 11 ? 2 : 3;
+        case 'ro':
+        case 'ro_RO':
+            return number == 1 ? 0 : number == 0 || (number % 100 > 0 && number % 100 < 20) ? 1 : 2;
+        case 'ar':
+        case 'ar_AE':
+        case 'ar_BH':
+        case 'ar_DZ':
+        case 'ar_EG':
+        case 'ar_IN':
+        case 'ar_IQ':
+        case 'ar_JO':
+        case 'ar_KW':
+        case 'ar_LB':
+        case 'ar_LY':
+        case 'ar_MA':
+        case 'ar_OM':
+        case 'ar_QA':
+        case 'ar_SA':
+        case 'ar_SD':
+        case 'ar_SS':
+        case 'ar_SY':
+        case 'ar_TN':
+        case 'ar_YE':
+            return number == 0
+                ? 0
+                : number == 1
+                    ? 1
+                    : number == 2
+                        ? 2
+                        : number % 100 >= 3 && number % 100 <= 10
+                            ? 3
+                            : number % 100 >= 11 && number % 100 <= 99
+                                ? 4
+                                : 5;
+        default:
+            return 0;
+    }
+}
+exports.getPluralIndex = getPluralIndex;
+//# sourceMappingURL=get-plural-index.js.map
 
 /***/ }),
 
@@ -47468,10 +48219,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
+/***/ "./resources/css/app.scss":
+/*!********************************!*\
+  !*** ./resources/css/app.scss ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -53094,6 +53845,38 @@ webpackContext.id = "./resources/js/Pages sync recursive ^\\.\\/.*\\.vue$";
 
 /***/ }),
 
+/***/ "./resources/lang lazy recursive ^\\.\\/.*\\.json$":
+/*!**************************************************************!*\
+  !*** ./resources/lang/ lazy ^\.\/.*\.json$ namespace object ***!
+  \**************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./de.json": [
+		"./resources/lang/de.json",
+		"resources_lang_de_json"
+	]
+};
+function webpackAsyncContext(req) {
+	if(!__webpack_require__.o(map, req)) {
+		return Promise.resolve().then(() => {
+			var e = new Error("Cannot find module '" + req + "'");
+			e.code = 'MODULE_NOT_FOUND';
+			throw e;
+		});
+	}
+
+	var ids = map[req], id = ids[0];
+	return __webpack_require__.e(ids[1]).then(() => {
+		return __webpack_require__.t(id, 3 | 16);
+	});
+}
+webpackAsyncContext.keys = () => (Object.keys(map));
+webpackAsyncContext.id = "./resources/lang lazy recursive ^\\.\\/.*\\.json$";
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
 /***/ "?2128":
 /*!********************************!*\
   !*** ./util.inspect (ignored) ***!
@@ -53192,6 +53975,36 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/create fake namespace object */
+/******/ 	(() => {
+/******/ 		var getProto = Object.getPrototypeOf ? (obj) => (Object.getPrototypeOf(obj)) : (obj) => (obj.__proto__);
+/******/ 		var leafPrototypes;
+/******/ 		// create a fake namespace object
+/******/ 		// mode & 1: value is a module id, require it
+/******/ 		// mode & 2: merge all properties of value into the ns
+/******/ 		// mode & 4: return value when already ns object
+/******/ 		// mode & 16: return value when it's Promise-like
+/******/ 		// mode & 8|1: behave like require
+/******/ 		__webpack_require__.t = function(value, mode) {
+/******/ 			if(mode & 1) value = this(value);
+/******/ 			if(mode & 8) return value;
+/******/ 			if(typeof value === 'object' && value) {
+/******/ 				if((mode & 4) && value.__esModule) return value;
+/******/ 				if((mode & 16) && typeof value.then === 'function') return value;
+/******/ 			}
+/******/ 			var ns = Object.create(null);
+/******/ 			__webpack_require__.r(ns);
+/******/ 			var def = {};
+/******/ 			leafPrototypes = leafPrototypes || [null, getProto({}), getProto([]), getProto(getProto)];
+/******/ 			for(var current = mode & 2 && value; typeof current == 'object' && !~leafPrototypes.indexOf(current); current = getProto(current)) {
+/******/ 				Object.getOwnPropertyNames(current).forEach((key) => (def[key] = () => (value[key])));
+/******/ 			}
+/******/ 			def['default'] = () => (value);
+/******/ 			__webpack_require__.d(ns, def);
+/******/ 			return ns;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -53201,6 +54014,39 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/ensure chunk */
+/******/ 	(() => {
+/******/ 		__webpack_require__.f = {};
+/******/ 		// This file contains only the entry chunk.
+/******/ 		// The chunk loading function for additional chunks
+/******/ 		__webpack_require__.e = (chunkId) => {
+/******/ 			return Promise.all(Object.keys(__webpack_require__.f).reduce((promises, key) => {
+/******/ 				__webpack_require__.f[key](chunkId, promises);
+/******/ 				return promises;
+/******/ 			}, []));
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/get javascript chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference async chunks
+/******/ 		__webpack_require__.u = (chunkId) => {
+/******/ 			// return url for filenames not based on template
+/******/ 			if (chunkId === "resources_lang_de_json") return "js/" + chunkId + ".js";
+/******/ 			// return url for filenames based on template
+/******/ 			return undefined;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/get mini-css chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference all chunks
+/******/ 		__webpack_require__.miniCssF = (chunkId) => {
+/******/ 			// return url for filenames based on template
+/******/ 			return "" + chunkId + ".css";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -53219,6 +54065,52 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/load script */
+/******/ 	(() => {
+/******/ 		var inProgress = {};
+/******/ 		// data-webpack is not used as build has no uniqueName
+/******/ 		// loadScript function to load a script via script tag
+/******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
+/******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
+/******/ 			var script, needAttach;
+/******/ 			if(key !== undefined) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				for(var i = 0; i < scripts.length; i++) {
+/******/ 					var s = scripts[i];
+/******/ 					if(s.getAttribute("src") == url) { script = s; break; }
+/******/ 				}
+/******/ 			}
+/******/ 			if(!script) {
+/******/ 				needAttach = true;
+/******/ 				script = document.createElement('script');
+/******/ 		
+/******/ 				script.charset = 'utf-8';
+/******/ 				script.timeout = 120;
+/******/ 				if (__webpack_require__.nc) {
+/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 				}
+/******/ 		
+/******/ 				script.src = url;
+/******/ 			}
+/******/ 			inProgress[url] = [done];
+/******/ 			var onScriptComplete = (prev, event) => {
+/******/ 				// avoid mem leaks in IE.
+/******/ 				script.onerror = script.onload = null;
+/******/ 				clearTimeout(timeout);
+/******/ 				var doneFns = inProgress[url];
+/******/ 				delete inProgress[url];
+/******/ 				script.parentNode && script.parentNode.removeChild(script);
+/******/ 				doneFns && doneFns.forEach((fn) => (fn(event)));
+/******/ 				if(prev) return prev(event);
+/******/ 			}
+/******/ 			;
+/******/ 			var timeout = setTimeout(onScriptComplete.bind(null, undefined, { type: 'timeout', target: script }), 120000);
+/******/ 			script.onerror = onScriptComplete.bind(null, script.onerror);
+/******/ 			script.onload = onScriptComplete.bind(null, script.onload);
+/******/ 			needAttach && document.head.appendChild(script);
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
@@ -53241,6 +54133,11 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		__webpack_require__.p = "/";
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
@@ -53253,7 +54150,44 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
-/******/ 		// no chunk on demand loading
+/******/ 		__webpack_require__.f.j = (chunkId, promises) => {
+/******/ 				// JSONP chunk loading for javascript
+/******/ 				var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
+/******/ 				if(installedChunkData !== 0) { // 0 means "already installed".
+/******/ 		
+/******/ 					// a Promise means "currently loading".
+/******/ 					if(installedChunkData) {
+/******/ 						promises.push(installedChunkData[2]);
+/******/ 					} else {
+/******/ 						if("css/app" != chunkId) {
+/******/ 							// setup Promise in chunk cache
+/******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
+/******/ 							promises.push(installedChunkData[2] = promise);
+/******/ 		
+/******/ 							// start chunk loading
+/******/ 							var url = __webpack_require__.p + __webpack_require__.u(chunkId);
+/******/ 							// create error before stack unwound to get useful stacktrace later
+/******/ 							var error = new Error();
+/******/ 							var loadingEnded = (event) => {
+/******/ 								if(__webpack_require__.o(installedChunks, chunkId)) {
+/******/ 									installedChunkData = installedChunks[chunkId];
+/******/ 									if(installedChunkData !== 0) installedChunks[chunkId] = undefined;
+/******/ 									if(installedChunkData) {
+/******/ 										var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+/******/ 										var realSrc = event && event.target && event.target.src;
+/******/ 										error.message = 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+/******/ 										error.name = 'ChunkLoadError';
+/******/ 										error.type = errorType;
+/******/ 										error.request = realSrc;
+/******/ 										installedChunkData[1](error);
+/******/ 									}
+/******/ 								}
+/******/ 							};
+/******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
+/******/ 						} else installedChunks[chunkId] = 0;
+/******/ 					}
+/******/ 				}
+/******/ 		};
 /******/ 		
 /******/ 		// no prefetching
 /******/ 		
@@ -53301,7 +54235,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
