@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use App\Helpers\Traits\SearchableScope;
 use App\Helpers\Traits\SearchableTrait;
 
 /**
@@ -15,6 +16,7 @@ class Role extends \Spatie\Permission\Models\Role
     const ADMIN = 'Admin';
 
     use SearchableTrait;
+    use SearchableScope;
 
     protected $searchable = [
         'columns' => [
@@ -23,15 +25,9 @@ class Role extends \Spatie\Permission\Models\Role
         ],
     ];
 
-    public function update(array $attributes = [], array $options = [])
+    public function setPermissionsAttribute(array $value)
     {
-        $this->syncPermissions(array_key_exists('permissions', $attributes) ? array_values($attributes['permissions']) : []);
-        return parent::update($attributes, $options);
-    }
-
-    public function scopeSearchPagination($query)
-    {
-        return $query->search(request('search'), null, true, true)->paginate(request('limit', 25));
+        $this->syncPermissions($value);
     }
 
 }
