@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\Traits\CacheableTrait;
 use App\Helpers\Traits\SearchableScope;
 use App\Helpers\Traits\SearchableTrait;
+use App\Helpers\Traits\User\PermissionTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -35,6 +36,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
     use HasRoles;
     use HasPermissions;
     use CacheableTrait;
+    use PermissionTrait;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -46,7 +48,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
      */
     protected $fillable = [
         'name', 'email', 'password', 'firstname', 'lastname', 'country', 'language', 'postcode', 'street', 'number',
-        'profile_photo_path', 'sex', 'city', 'state',
+        'profile_photo_path', 'sex', 'city', 'state', 'permissions', 'roles',
     ];
 
     /**
@@ -78,10 +80,5 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public function permissionsToArray(): \Illuminate\Database\Eloquent\Collection|array|\Illuminate\Support\Collection
-    {
-        return ($this->hasRole(Role::SUPER_ADMIN) ? Permission::all() : $this->getAllPermissions())->mapWithKeys(fn($permission) => [$permission['name'] => true]);
-    }
 
 }
