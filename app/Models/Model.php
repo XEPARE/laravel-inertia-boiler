@@ -20,4 +20,9 @@ class Model extends \Illuminate\Database\Eloquent\Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    public function getIdAttribute()
+    {
+        return (string) $this->id;
+    }
+
 }
