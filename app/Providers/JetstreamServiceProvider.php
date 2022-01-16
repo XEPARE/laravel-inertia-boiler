@@ -16,7 +16,10 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Prevent default routes
+        Jetstream::ignoreRoutes();
+        // Load own routes
+        $this->loadRoutesFrom(base_path('routes/jetstream.php'));
     }
 
     /**
