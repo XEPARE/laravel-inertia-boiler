@@ -9,7 +9,7 @@ module.exports = {
         },
 
         can(permission) {
-            return !!this.$page.props.auth.can[permission];
+            return this.$page.props.auth.can.indexOf(permission) !== -1;
         },
 
         dateTime(value) {
