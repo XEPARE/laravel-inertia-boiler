@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusEnum;
 use App\Helpers\Traits\CacheableTrait;
 use App\Helpers\Traits\SearchableScope;
 use App\Helpers\Traits\SearchableTrait;
@@ -70,6 +71,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'state' => StatusEnum::class,
     ];
 
     /**
