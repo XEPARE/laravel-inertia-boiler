@@ -26,12 +26,13 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
-        "spatie/laravel-ignition": "^1.6",
         "fakerphp/faker": "^1.20.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10"
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.6",
+        "spatie/laravel-ray": "^1.31"
     },
     "autoload": {
         "psr-4": {
