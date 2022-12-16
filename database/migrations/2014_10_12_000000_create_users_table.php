@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->char('language', 5)->default('de');
-            $table->enum('state', \App\Enums\StatusEnum::values())->default(\App\Enums\StatusEnum::ACTIVE);
+            $table->enum('state', StatusEnum::values())->default(StatusEnum::ACTIVE);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
