@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Helpers\Traits\User;
+namespace App\Models\Traits\User;
 
 
 use App\Models\Role;

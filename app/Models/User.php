@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Helpers\Traits\CacheableTrait;
 use App\Helpers\Traits\SearchableScope;
 use App\Helpers\Traits\SearchableTrait;
-use App\Helpers\Traits\User\PermissionTrait;
+use App\Models\Traits\User\PermissionTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
