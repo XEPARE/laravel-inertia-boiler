@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->char('language', 5)->default('de');
-            $table->enum('state', Status::values())->default(Status::ACTIVE);
+            $table->enum('state', \App\Enums\StatusEnum::values())->default(\App\Enums\StatusEnum::ACTIVE);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
