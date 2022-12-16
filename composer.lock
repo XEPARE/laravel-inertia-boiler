@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82612bdadbb9e7e3f9ede99380a59b3e",
+    "content-hash": "44bc27984ae11e783142669ad523fa45",
     "packages": [
+        {
+            "name": "archtechx/enums",
+            "version": "v0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/archtechx/enums.git",
+                "reference": "373a86a16e7233a56dd942d422af2cc59a2becb3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/archtechx/enums/zipball/373a86a16e7233a56dd942d422af2cc59a2becb3",
+                "reference": "373a86a16e7233a56dd942d422af2cc59a2becb3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "nunomaduro/larastan": "^1.0|^2.0",
+                "orchestra/testbench": "^6.9|^7.0",
+                "pestphp/pest": "^1.2",
+                "pestphp/pest-plugin-laravel": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArchTech\\Enums\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel Štancl",
+                    "email": "samuel@archte.ch"
+                }
+            ],
+            "description": "Helpers for making PHP enums more lovable.",
+            "support": {
+                "issues": "https://github.com/archtechx/enums/issues",
+                "source": "https://github.com/archtechx/enums/tree/v0.3.1"
+            },
+            "time": "2022-08-24T22:27:44+00:00"
+        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "2.0.8",
