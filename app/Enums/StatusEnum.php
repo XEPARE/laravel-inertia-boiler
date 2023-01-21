@@ -3,10 +3,11 @@
 namespace App\Enums;
 
 use ArchTech\Enums\Values;
+use ArchTech\Enums\Names;
 
 enum StatusEnum: int
 {
-    use Values;
+    use Values, Names;
 
     case ACTIVE = 1;
     case INACTIVE = 2;
