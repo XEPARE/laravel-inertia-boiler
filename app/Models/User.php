@@ -11,11 +11,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Kra8\Snowflake\HasSnowflakePrimary;
+use Kra8\Snowflake\HasShortflakePrimary;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -31,7 +30,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
     use TwoFactorAuthenticatable;
 //    use \Illuminate\Auth\MustVerifyEmail;
     use HasFactory;
-    use HasSnowflakePrimary;
+    use HasShortflakePrimary;
     use SearchableTrait;
     use SearchableScope;
     use HasRoles;
