@@ -12,8 +12,8 @@
         "guzzlehttp/guzzle": "^7.5.0",
         "inertiajs/inertia-laravel": "^0.6.4",
         "kra8/laravel-snowflake": "^2.0",
-        "laravel/framework": "^9.43",
-        "laravel/jetstream": "^2.12",
+        "laravel/framework": "^9.51",
+        "laravel/jetstream": "^2.16",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "lorisleiva/laravel-actions": "^2.4",
@@ -76,6 +76,6 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
