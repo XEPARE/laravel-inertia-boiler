@@ -16,7 +16,6 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-//    return throw new \App\Exceptions\ViewException('This is a test exception', 'Test Exception');
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
