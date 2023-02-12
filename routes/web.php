@@ -16,6 +16,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    return throw new \App\Exceptions\ViewException('This is a test exception', 'Test Exception');
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -25,5 +26,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return throw new \App\Exceptions\ViewException('This is a test exception', 'Test Exception');
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::get('debug', function () {
+    return throw new \App\Exceptions\ViewException('This is a test exception', 'Test Exception');
+})->name('debug');

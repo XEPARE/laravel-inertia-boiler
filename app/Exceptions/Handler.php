@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Inertia\Inertia;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,8 +35,9 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (ViewException $exception) {
+            return Inertia::render($exception->page, $exception->props);
+            return app(Inertia::getFacadeRoot())->render($exception->page, $exception->props);
         });
     }
 

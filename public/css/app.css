@@ -1064,6 +1064,9 @@ select {
 .col-span-6 {
     grid-column: span 6 / span 6;
 }
+.m-4 {
+    margin: 1rem;
+}
 .m-20 {
     margin: 5rem;
 }
@@ -1522,6 +1525,9 @@ select {
 }
 .p-6 {
     padding: 1.5rem;
+}
+.p-4 {
+    padding: 1rem;
 }
 .px-4 {
     padding-left: 1rem;
@@ -2041,6 +2047,9 @@ select {
     .sm\:col-span-4 {
         grid-column: span 4 / span 4;
     }
+    .sm\:m-0 {
+        margin: 0px;
+    }
     .sm\:mx-0 {
         margin-left: 0px;
         margin-right: 0px;
@@ -2094,6 +2103,9 @@ select {
     }
     .sm\:w-full {
         width: 100%;
+    }
+    .sm\:w-1\/3 {
+        width: 33.333333%;
     }
     .sm\:max-w-md {
         max-width: 28rem;
@@ -2162,6 +2174,9 @@ select {
     }
     .sm\:p-6 {
         padding: 1.5rem;
+    }
+    .sm\:p-12 {
+        padding: 3rem;
     }
     .sm\:px-6 {
         padding-left: 1.5rem;
