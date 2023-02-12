@@ -25430,6 +25430,80 @@ module.exports = {
     var base_path = window._asset || location.origin;
     if (!path.startsWith('/')) path = "/" + path;
     return base_path + path;
+  }), _defineProperty(_methods, "uppercaseWords", function uppercaseWords(str) {
+    return str.replace(/(^|\s)\S/g, function (l) {
+      return l.toUpperCase();
+    });
+  }), _defineProperty(_methods, "debounce", function debounce(fn, delay) {
+    var timeoutId;
+    return function () {
+      var _this2 = this;
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(function () {
+        return fn.apply(_this2, args);
+      }, delay);
+    };
+  }), _defineProperty(_methods, "readableCronExpression", function readableCronExpression(expression) {
+    return cronstrue.toString(expression);
+  }), _defineProperty(_methods, "price", function price(number) {
+    var suffix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '€';
+    number = parseFloat(number);
+    number = number.toFixed(2) + '';
+    x = number.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2 + ' ' + suffix;
+  }), _defineProperty(_methods, "getTrendByValues", function getTrendByValues(now, previous) {
+    if (now === previous) {
+      return '0%';
+    }
+    if (previous == 0) {
+      return '';
+    }
+    var trend;
+    var diff = (now - previous) / previous * 100;
+    if (diff > 0) {
+      trend = "+".concat(parseFloat(diff).toFixed(0), "%");
+    } else if (diff < 0) {
+      trend = "".concat(parseFloat(diff).toFixed(0), "%");
+    } else {
+      trend = "0%";
+    }
+    return trend;
+  }), _defineProperty(_methods, "getTimeDifference", function getTimeDifference(start, end) {
+    var diff = Math.abs(new Date(start) - new Date(end));
+    var diffInSeconds = diff / 1000;
+    var diffInMinutes = diffInSeconds / 60;
+    var diffInHours = diffInMinutes / 60;
+    var diffInDays = diffInHours / 24;
+    var diffInWeeks = diffInDays / 7;
+    if (diffInWeeks >= 1) {
+      return Math.floor(diffInWeeks) + " weeks";
+    } else if (diffInDays >= 1) {
+      return Math.floor(diffInDays) + " days";
+    } else if (diffInHours >= 1) {
+      return Math.floor(diffInHours) + " hours";
+    } else if (diffInMinutes >= 1) {
+      return Math.floor(diffInMinutes) + " minutes";
+    } else {
+      return Math.floor(diffInSeconds) + " seconds";
+    }
+  }), _defineProperty(_methods, "getDates", function getDates(startDate, endDate) {
+    var dateArray = [];
+    var currentDate = moment(startDate);
+    var endDate = moment(endDate);
+    while (currentDate <= endDate) {
+      dateArray.push(moment(currentDate).format('YYYY-MM-DD'));
+      currentDate = moment(currentDate).add(1, 'days');
+    }
+    return dateArray;
   }), _methods)
 };
 
