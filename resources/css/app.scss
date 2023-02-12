@@ -2,3 +2,14 @@
 @import "fonts.css";
 // TailwindCSS Stuff
 @import "app.css";
+
+*::-webkit-scrollbar {
+  width: 13px;
+}
+*::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+*::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 rounded-full;
+  border: 4.5px solid #F3F4F6;
+}
