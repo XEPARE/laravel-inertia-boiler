@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import EmptyState from "@/Misc/EmptyState";
+import EmptyState from "@/Misc/EmptyState.vue";
 
 defineProps({
   title: {
