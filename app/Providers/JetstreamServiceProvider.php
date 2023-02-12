@@ -50,6 +50,32 @@ class JetstreamServiceProvider extends ServiceProvider
             'update',
             'delete',
         ]);
+
+        if (Jetstream::hasTeamFeatures()) {
+            Jetstream::role('admin', 'Administrator', [
+                'create',
+                'read',
+                'update',
+                'delete',
+            ])->description('Administrator users can perform any action.');
+
+            Jetstream::role('manager', 'Manager', [
+                'create',
+                'read',
+                'update',
+                'delete',
+            ])->description('Manager users can create, read, update and delete any resources.');
+
+            Jetstream::role('team-member', 'Team-Member', [
+                'create',
+                'read',
+                'update',
+            ])->description('Team-Member users can create, read and update resources.');
+
+            Jetstream::role('viewer', 'Viewer', [
+                'read',
+            ])->description('Viewer users can only read resources.');
+        }
     }
 
     function configureShares()

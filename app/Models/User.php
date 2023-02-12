@@ -7,6 +7,7 @@ use App\Helpers\Traits\CacheableTrait;
 use App\Helpers\Traits\SearchableScope;
 use App\Helpers\Traits\SearchableTrait;
 use App\Models\Traits\User\PermissionTrait;
+use App\Models\Traits\User\IsTeamMemberTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use Kra8\Snowflake\HasShortflakePrimary;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
@@ -23,20 +25,22 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable /*implements MustVerifyEmail*/
 {
+
+    use HasShortflakePrimary;
     use HasApiTokens;
     use HasFactory;
+    use HasPermissions;
     use HasProfilePhoto;
-    use Notifiable;
+    use HasRoles;
+    use HasTeams;
     use TwoFactorAuthenticatable;
+    use Notifiable;
 //    use \Illuminate\Auth\MustVerifyEmail;
-    use HasFactory;
-    use HasShortflakePrimary;
     use SearchableTrait;
     use SearchableScope;
-    use HasRoles;
-    use HasPermissions;
     use CacheableTrait;
     use PermissionTrait;
+    use IsTeamMemberTrait;
 
     protected $keyType = 'string';
     public $incrementing = false;

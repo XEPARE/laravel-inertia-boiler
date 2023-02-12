@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Laravel\Jetstream\Jetstream;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,8 +37,21 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
-        return array_merge(parent::share($request), [
-            //
-        ]);
+        $payload = parent::share($request);
+
+        /** Adding team-featured stuff */
+        if (Jetstream::hasTeamFeatures()) {
+            $payload = array_merge($payload, [
+                'user.current_team_role' => function () use ($request) {
+                    if (!$request->user() || $request->user()->currentTeam === null) {
+                        return [];
+                    }
+                    return $request->user()->getTeamRole();
+                },
+            ]);
+        }
+
+
+        return $payload;
     }
 }

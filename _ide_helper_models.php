@@ -22,7 +22,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Model searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @mixin \Eloquent
  */
-	class IdeHelperModel extends \Eloquent {}
+	class IdeHelperModel {}
 }
 
 namespace App\Models{
@@ -52,7 +52,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-	class IdeHelperPermission extends \Eloquent {}
+	class IdeHelperPermission {}
 }
 
 namespace App\Models{
@@ -64,7 +64,7 @@ namespace App\Models{
  * @property string $guard_name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
  * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property-read int|null $users_count
@@ -73,7 +73,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Role permission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|Role query()
  * @method static \Illuminate\Database\Eloquent\Builder|Role search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
- * @method static \Illuminate\Database\Eloquent\Builder|Role searchPagination()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role searchPagination($search, $limit = 25, $visible = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Role searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereGuardName($value)
@@ -82,7 +82,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-	class IdeHelperRole extends \Eloquent {}
+	class IdeHelperRole {}
 }
 
 namespace App\Models{
@@ -93,7 +93,7 @@ namespace App\Models{
  * @property string $name
  * @property string $email
  * @property string $language
- * @property string $state
+ * @property \App\Enums\StatusEnum $state
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $two_factor_secret
@@ -113,9 +113,9 @@ namespace App\Models{
  * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
  * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
@@ -151,6 +151,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-	class IdeHelperUser extends \Eloquent {}
+	class IdeHelperUser {}
 }
 
