@@ -1,6 +1,6 @@
 <?php
 
-function user()
+function user(): \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable|null
 {
     return auth()->user();
 }
