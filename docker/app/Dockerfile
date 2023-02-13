@@ -1,26 +1,8 @@
-FROM composer:2.0.13 AS COMPOSER_BASE
+FROM ghcr.io/rene-roscher/php-docker:php-8.2 AS APP_BASE
 
 WORKDIR /var/www
 
 COPY . /var/www
-
-RUN composer install --ignore-platform-reqs --no-interaction --no-plugins --no-scripts --prefer-dist
-
-FROM node:12-alpine AS NODE_BASE
-
-WORKDIR /var/www
-
-COPY --from=COMPOSER_BASE /var/www .
-
-RUN npm install
-
-RUN npm run production
-
-FROM ghcr.io/rene-roscher/php-docker:latest AS APP_BASE
-
-WORKDIR /var/www
-
-COPY --from=NODE_BASE /var/www .
 
 RUN echo "" > /var/www/storage/logs/laravel.log
 
