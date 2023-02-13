@@ -8,9 +8,22 @@ export default {
             return this.$t(key, replace);
         },
 
-        can(permission) {
+        can(permission, strict = false) {
+            if (!strict && this.$page.props.auth.can.indexOf('*') !== -1)
+                return true;
+
+            /* Wildcard Permissions Check [like can('USER_*') => checking if one item startWith USER] */
+            if (permission.endsWith('*')) {
+                for (let item of this.$page.props.auth.can) {
+                    if (item.startsWith(permission.split('_')[0])) {
+                        return true;
+                    }
+                }
+            }
+
             return this.$page.props.auth.can.indexOf(permission) !== -1;
         },
+
 
         dateTime(value) {
             return moment(value).format('DD.MM.YYYY - HH:mm');
