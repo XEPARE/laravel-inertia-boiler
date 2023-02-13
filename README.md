@@ -17,6 +17,22 @@ A Laravel boilerplate with the latest technologies and best practices to kicksta
 - Sentry for error tracking and reporting
 - Buildset for continuous integration and deployment (Github Actions)
 
+## Included Libaries
+- [Laravel 9.x](https://laravel.com/docs/9.x)
+- [Jetstream](https://jetstream.laravel.com/2.x/introduction.html)
+- [InertiaJS](https://inertiajs.com/)
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/) (preinstalled Forms, Typography and Aspect Ratio)
+- [Vue 3](https://v3.vuejs.org/)
+- [HeadlessUI](https://headlessui.dev/)
+- [Heroicons](https://heroicons.com/)
+- [Ray](https://myray.app/) (or using free alternative [Buggregator](https://github.com/buggregator/app))
+- [Snowflake](https://github.com/kra8/laravel-snowflake)
+- [Sentry](https://sentry.io/welcome/)
+- [Debugbar](https://github.com/barryvdh/laravel-debugbar)
+- [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
+- [Spatie's Laravel Permission](https://github.com/spatie/laravel-permission)
+
 ## Getting Started
 
 1. Clone the repository
