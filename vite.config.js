@@ -17,4 +17,13 @@ export default defineConfig({
             },
         }),
     ],
+
+    optimizeDeps: {
+        include: [
+            '@inertiajs/inertia-vue3',
+            '@inertiajs/vue3',
+            'axios',
+            'lodash',
+        ]
+    }
 });

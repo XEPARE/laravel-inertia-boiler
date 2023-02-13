@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     methods: {
 
         /**
@@ -115,14 +115,6 @@ module.exports = {
 
         isDirectory(file) {
             return file.mimetype === 'inode/directory';
-        },
-
-        encodePathSegments(path) {
-            return path.split('/').map(s => encodeURIComponent(s)).join('/');
-        },
-
-        hashToPath(hash) {
-            return hash.length > 0 ? decodeURIComponent(hash.substr(1)) : '/';
         },
 
         nl2br(text, reg = /\n\r/g) {
