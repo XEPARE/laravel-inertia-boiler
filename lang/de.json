@@ -1,5 +1,6 @@
 {
     "Hello :name": "Hallo :name",
     "Log in": "Einloggen",
-    "Register": "Anmelden"
+    "Register": "Anmelden",
+    "Taylor Otwell is an American software engineer and entrepreneur, best known as the creator of the Laravel PHP framework. He has been involved in web development since the early 2000s and has been a significant contributor to the PHP community. In addition to Laravel, he has also created a number of other popular open-source projects and tools, including Forge, Envoyer, and Spark. Otwell is widely regarded as one of the leading figures in the PHP community, and he continues to be active in the development of Laravel and other projects.": "Taylor Otwell ist ein amerikanischer Software-Ingenieur und Unternehmer, der vor allem als Erfinder des Laravel PHP-Frameworks bekannt ist. Er ist seit den frühen 2000er Jahren in der Webentwicklung tätig und hat sich als bedeutender Beitrag zur PHP-Community erwiesen. Neben Laravel hat er auch eine Reihe anderer beliebter Open-Source-Projekte und Tools erstellt, darunter Forge, Envoyer und Spark. Otwell gilt als einer der führenden Figuren in der PHP-Community und ist weiterhin an der Entwicklung von Laravel und anderen Projekten beteiligt."
 }

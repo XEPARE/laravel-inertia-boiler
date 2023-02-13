@@ -23,7 +23,12 @@ createInertiaApp({
             /* Plugins */
             .use(plugin)
             .use(ZiggyVue, Ziggy)
-            .use(i18nVue)
+            .use(i18nVue, {
+                resolve: async lang => {
+                    const languageFiles = import.meta.glob('../../lang/*.json');
+                    return await languageFiles[`../../lang/${lang}.json`]();
+                }
+            })
             /* Mixins */
             .mixin(base)
             /* Components */
