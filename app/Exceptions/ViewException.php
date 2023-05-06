@@ -36,9 +36,9 @@ class ViewException extends Exception
     {
         parent::__construct($message);
 
-        if ($message !== "" && $props !== [])
+        if ($message !== "" && empty($props))
             $this->props['message'] = $message;
-        if ($title !== "" && $props !== [])
+        if ($title !== "" && empty($props))
             $this->props['title'] = $title;
         if ($page !== "")
             $this->page = $page;
