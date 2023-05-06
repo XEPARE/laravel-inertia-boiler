@@ -37,7 +37,6 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (ViewException $exception) {
             return Inertia::render($exception->page, $exception->props);
-            return app(Inertia::getFacadeRoot())->render($exception->page, $exception->props);
         });
     }
 
