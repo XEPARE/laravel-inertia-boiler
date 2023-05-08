@@ -29,3 +29,8 @@ function flashRedirect($name, $message, $error = false)
         'banner' => $message,
     ]);
 }
+
+function isLocalhost(): bool
+{
+    return Str::startsWith(config('app.url'), 'http://localhost') || Str::contains(config('app.url'), '://localhost');
+}
