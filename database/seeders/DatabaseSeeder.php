@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
                 'firstname' => 'Max',
                 'lastname' => 'Musterwiese',
                 'email' => 'admin@example.com',
-                'password' => \Hash::make('123admin456'),
+                'password' => '123admin456',
                 'email_verified_at' => now()
             ]), function (User $user) {
                 $user->refresh();
