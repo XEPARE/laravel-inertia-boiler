@@ -24,7 +24,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'image', 'max:1024'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png,svg', 'max:1024'],
 //            'sex' => 'nullable|in:MALE,FEMALE,DIVERS',
 //            'country' => ['nullable', Rule::in(collect(countries())->map(fn($o) => $o['iso_3166_1_alpha2'])->values())],
 //            'language' => ['required', Rule::in(collect($this->getAvailableLanguages(true))->keys())],
