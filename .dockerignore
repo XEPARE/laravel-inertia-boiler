@@ -7,7 +7,8 @@
 /.gitattributes
 /.styleci.yml
 /_ide_helper_models.php
-/docker
+/docker/app
+/docker/logs
 /vite.config.js
 /tailwind.config.js
 /ray.php
