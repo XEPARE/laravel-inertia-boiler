@@ -59,7 +59,7 @@ jobs:
       - name: Install node dependencies
         run: |
           npm install
-          npm run production
+          npm run build
       - name: Build image
         run: docker build . --file docker/app/Dockerfile --tag $IMAGE_NAME
 
