@@ -51,7 +51,6 @@ class HandleInertiaRequests extends Middleware
             ]);
         }
 
-
         return $payload;
     }
 }
