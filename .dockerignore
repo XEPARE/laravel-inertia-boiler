@@ -33,5 +33,4 @@
 # Exclude Laravel-specific files and directories
 /bootstrap/
 /public/storage/
-/storage/
 /README.md
