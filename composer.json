@@ -17,7 +17,7 @@
         "laravel/tinker": "^2.8",
         "lorisleiva/laravel-actions": "^2.5",
         "matriphe/iso-639": "^1.2",
-        "predis/predis": "^2.2",
+        "predis/predis": "^2.1",
         "rene-roscher/observable-provider": "^1.0",
         "rinvex/countries": "^9.0",
         "sentry/sentry-laravel": "^3.4",
@@ -73,7 +73,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true
