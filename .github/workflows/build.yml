@@ -1,4 +1,3 @@
-## To use this, rename the folder ".github-keep" to ".github" and add the secrets to your repository.
 name: Build
 
 on:
@@ -7,7 +6,7 @@ on:
       - '*'
 
 env:
-  IMAGE_NAME: REF
+  IMAGE_NAME: laravel-app
 
 jobs:
   #  auth-test:
