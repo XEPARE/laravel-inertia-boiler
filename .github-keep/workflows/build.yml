@@ -48,12 +48,12 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: "8.2"
-          args: --profile --ignore-platform-reqs
+          args: --profile --ignore-platform-reqs --optimize-autoloader
           dev: no
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 16
           cache: 'npm'
           cache-dependency-path: package-lock.json
 
@@ -78,12 +78,12 @@ jobs:
           docker tag $IMAGE_NAME $IMAGE_ID:$COMMIT
           docker push $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$COMMIT
-      - name: Send Telegram Message
-        run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.TELEGRAM_CHAT }}", "parse_mode": "markdown", "text": "*[${{ github.repository }}]* finished image-build:
-          Branch: *${{ github.ref }}*
-          Commit: [${{ github.event.commits[0].message }}](${{ github.event.commits[0].url }})
-          Workflow: *${{ github.workflow }}*
-          - [Changes](https://github.com/${{ github.repository }}/commit/${{github.sha}})
-          - [Workflow](https://github.com/${{ github.repository }}/actions/runs/${{github.run_id}})", "disable_notification": false}' https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage
+#      - name: Send Telegram Message
+#        run: |
+#          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+#          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.TELEGRAM_CHAT }}", "parse_mode": "markdown", "text": "*[${{ github.repository }}]* finished image-build:
+#          Branch: *${{ github.ref }}*
+#          Commit: [${{ github.event.commits[0].message }}](${{ github.event.commits[0].url }})
+#          Workflow: *${{ github.workflow }}*
+#          - [Changes](https://github.com/${{ github.repository }}/commit/${{github.sha}})
+#          - [Workflow](https://github.com/${{ github.repository }}/actions/runs/${{github.run_id}})", "disable_notification": false}' https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage
