@@ -1,0 +1,37 @@
+# Exclude development and testing files
+/.env.*
+/docker-compose.yml
+/phpunit.xml
+/tests/
+/.editorconfig
+/.gitattributes
+/.styleci.yml
+/_ide_helper_models.php
+/docker
+/vite.config.js
+/tailwind.config.js
+/ray.php
+/postcss.config.js
+/.env.example
+/.github
+/resources/js
+/resources/css
+
+# Exclude version control files
+/.git
+/.gitignore
+
+# Exclude Composer files
+/vendor/
+/composer.lock
+
+# Exclude NPM/Yarn files
+/node_modules/
+/package-lock.json
+/yarn.lock
+
+# Exclude Laravel-specific files and directories
+/bootstrap/
+/public/storage/
+/storage/
+/README.md
