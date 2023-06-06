@@ -62,6 +62,28 @@ trait HasMedia
                     ? Storage::disk($this->mediaDisk())->url($this->{$path})
                     : $defaultUrl;
     }
+    
+    /**
+     * @param string $photo
+     * @param string $pathColumn
+     * @param string $path
+     * @return void
+     */
+    public function updateMediaByUrl(string $sourceUrl, string $pathColumn = 'profile_photo_path', string $path = 'profile-photos'): void
+    {
+        tap($this->{$pathColumn}, function ($previous) use ($photo, $pathColumn, $path) {
+            Storage::disk($this->mediaDisk())->put($name = sprintf('%s/%s', $path, Uuid::uuid4()), file_get_contents($sourceUrl), [
+                'visibility' => 'public'
+            ]);
+            $this->forceFill([
+                $pathColumn => $name,
+            ])->save();
+
+            if ($previous) {
+                Storage::disk($this->mediaDisk())->delete($previous);
+            }
+        });
+    }
 
     /**
      * Get the disk that media files should be stored on.
