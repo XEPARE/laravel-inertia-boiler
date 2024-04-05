@@ -1,3 +1,4 @@
+/** @deprecated - Migrated to Composables */
 export default {
     methods: {
 
@@ -181,74 +182,6 @@ export default {
                 timeoutId = setTimeout(() => fn.apply(this, args), delay)
             }
         },
-
-        readableCronExpression(expression) {
-            return cronstrue.toString(expression);
-        },
-
-        price(number, suffix = '€') {
-            number = parseFloat(number);
-            number = number.toFixed(2) + '';
-            x = number.split('.');
-            x1 = x[0];
-            x2 = x.length > 1 ? '.' + x[1] : '';
-            var rgx = /(\d+)(\d{3})/;
-            while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, '$1' + ',' + '$2');
-            }
-            return x1 + x2 + ' ' + suffix;
-        },
-
-        getTrendByValues(now, previous) {
-            if (now === previous) {
-                return '0%';
-            }
-            if (previous == 0) {
-                return '';
-            }
-            let trend;
-            let diff = (now - previous) / previous * 100;
-            if (diff > 0) {
-                trend = `+${parseFloat(diff).toFixed(0)}%`;
-            } else if (diff < 0) {
-                trend = `${parseFloat(diff).toFixed(0)}%`;
-            } else {
-                trend = `0%`;
-            }
-            return trend;
-        },
-
-        getTimeDifference(start, end) {
-            var diff = Math.abs(new Date(start) - new Date(end));
-            var diffInSeconds = diff / 1000;
-            var diffInMinutes = diffInSeconds / 60;
-            var diffInHours = diffInMinutes / 60;
-            var diffInDays = diffInHours / 24;
-            var diffInWeeks = diffInDays / 7;
-
-            if (diffInWeeks >= 1) {
-                return Math.floor(diffInWeeks) + " weeks";
-            } else if (diffInDays >= 1) {
-                return Math.floor(diffInDays) + " days";
-            } else if (diffInHours >= 1) {
-                return Math.floor(diffInHours) + " hours";
-            } else if (diffInMinutes >= 1) {
-                return Math.floor(diffInMinutes) + " minutes";
-            } else {
-                return Math.floor(diffInSeconds) + " seconds";
-            }
-        },
-
-        getDates(startDate, endDate) {
-            var dateArray = [];
-            var currentDate = moment(startDate);
-            var endDate = moment(endDate);
-            while (currentDate <= endDate) {
-                dateArray.push( moment(currentDate).format('YYYY-MM-DD') )
-                currentDate = moment(currentDate).add(1, 'days');
-            }
-            return dateArray;
-        }
 
     },
 }

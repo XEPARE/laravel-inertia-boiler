@@ -6,7 +6,7 @@ import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 import {ZiggyVue} from '../../vendor/tightenco/ziggy/dist/index.js';
 
 // Mixins
-import base from './base';
+// import base from './base';
 
 // Plugins
 import {i18nVue} from "laravel-vue-i18n";
@@ -30,7 +30,7 @@ createInertiaApp({
                 }
             })
             /* Mixins */
-            .mixin(base)
+            // .mixin(base)
             /* Components */
             .component('inertia-link', Link)
             /* Mountpoint */
