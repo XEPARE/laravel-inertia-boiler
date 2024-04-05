@@ -17,10 +17,10 @@ return [
     // Defined roles and there permission list
     'roles' => [
 
-        \App\Models\Role::SUPER_ADMIN => [], // Whoever has this role bypasses the entire permission system
+        \App\Enums\RoleEnum::SUPER_ADMIN->value => [], // Whoever has this role bypasses the entire permission system
 
         // Assign all permissions without delete for the administrator
-        \App\Models\Role::ADMIN => collect($permissionModels)->mapWithKeys(fn($key) => [
+        \App\Enums\RoleEnum::ADMIN->value => collect($permissionModels)->mapWithKeys(fn($key) => [
             $key => [
                 'read',
                 'update',

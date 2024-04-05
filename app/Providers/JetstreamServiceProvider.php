@@ -78,7 +78,7 @@ class JetstreamServiceProvider extends ServiceProvider
         }
     }
 
-    function configureShares()
+    private function configureShares(): void
     {
         Inertia::share('auth', fn() => [
             'can' => user() ? user()->permissionsToArray() : [],
