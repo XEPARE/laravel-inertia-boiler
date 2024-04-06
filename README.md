@@ -1,6 +1,6 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-# Boilerplate Laravel 10.x
+# Boilerplate Laravel 11.x
 
 A Laravel boilerplate with the latest technologies and best practices to kickstart your project.
 
@@ -18,11 +18,11 @@ A Laravel boilerplate with the latest technologies and best practices to kicksta
 - Buildset for continuous integration and deployment (Github Actions)
 
 ## Included Libaries
-- [Laravel 9.x](https://laravel.com/docs/9.x)
-- [Jetstream](https://jetstream.laravel.com/2.x/introduction.html)
+- [Laravel 11.x](https://laravel.com/docs/11.x)
+- [Jetstream](https://jetstream.laravel.com)
 - [InertiaJS](https://inertiajs.com/)
 - [Vite](https://vitejs.dev/)
-- [TailwindCSS](https://tailwindcss.com/) (preinstalled Forms, Typography and Aspect Ratio)
+- [TailwindCSS](https://tailwindcss.com/) (preinstalled Forms, Typography, Line Clamp and Aspect Ratio)
 - [Vue 3](https://v3.vuejs.org/)
 - [HeadlessUI](https://headlessui.dev/)
 - [Heroicons](https://heroicons.com/)

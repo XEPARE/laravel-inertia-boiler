@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +21,7 @@ class DatabaseSeeder extends Seeder
             XepareSeeder::class,
         ]);
 
-        \DB::transaction(function () {
+        DB::transaction(function () {
             return tap(User::create([
                 'name' => 'Admin',
                 'firstname' => 'Max',
@@ -29,7 +31,7 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now()
             ]), function (User $user) {
                 $user->refresh();
-                $user->assignRole(Role::SUPER_ADMIN);
+                $user->assignRole(RoleEnum::SUPER_ADMIN->value);
             });
         });
     }

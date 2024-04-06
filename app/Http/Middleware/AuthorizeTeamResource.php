@@ -29,10 +29,10 @@ class AuthorizeTeamResource
 
         $routeModel = $request->route($routeModelName);
         if (!$team->{$relation}->contains('id', '=', $routeModel->id))
-            return abort(403);
+            abort(403);
 
         if (!user()->hasTeamPermission($team, $ability))
-            return abort(403);
+            abort(403);
 
         return $next($request);
     }

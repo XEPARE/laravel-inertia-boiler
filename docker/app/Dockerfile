@@ -6,10 +6,10 @@ COPY . /var/www
 
 RUN echo "" > /var/www/storage/logs/laravel.log
 
+COPY ./docker/supervisord.conf /etc/supervisord.conf
+
 RUN chmod -R gu+w storage/ && chmod -R guo+w storage/ && chmod -R gu+w bootstrap/cache/ && chmod -R guo+w bootstrap/cache/
 
 RUN chown -R www-data:www-data /var/www
-
-COPY ./docker/supervisord.conf /etc/supervisord.conf
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]

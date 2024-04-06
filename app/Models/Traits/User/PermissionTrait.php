@@ -4,15 +4,17 @@
 namespace App\Models\Traits\User;
 
 
-use App\Models\Role;
+use App\Enums\RoleEnum;
+use Illuminate\Database\Eloquent\Collection;
 use Spatie\Permission\Models\Permission;
 
 trait PermissionTrait
 {
 
-    public function permissionsToArray(): \Illuminate\Database\Eloquent\Collection|array|\Illuminate\Support\Collection
+    public function permissionsToArray(): Collection|array|\Illuminate\Support\Collection
     {
-        return ($this->hasRole(Role::SUPER_ADMIN) ? Permission::all() : $this->getAllPermissions())->mapWithKeys(fn($permission) => [$permission['name'] => true]);
+        return ($this->hasRole(RoleEnum::SUPER_ADMIN->value) ? Permission::all() : $this->getAllPermissions())
+            ->mapWithKeys(fn($permission) => [$permission['name'] => true]);
     }
 
     public function setPermissionsAttribute(array $value)

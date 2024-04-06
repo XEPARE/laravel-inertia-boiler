@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 function user(): \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable|null
 {
     return auth()->user();

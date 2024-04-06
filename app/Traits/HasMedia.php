@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Ramsey\Uuid\Uuid;
 
 trait HasMedia
 {
@@ -33,10 +34,10 @@ trait HasMedia
     /**
      * Delete the user's media file.
      *
-     * @param  string  $path
+     * @param string|null $path
      * @return void
      */
-    public function deleteMedia($path): void
+    public function deleteMedia(string|null $path): void
     {
         if (is_null($this->{$path})) {
             return;
@@ -52,26 +53,26 @@ trait HasMedia
     /**
      * Get the URL to the user's media file.
      *
-     * @param  string  $path
-     * @param  string  $defaultUrl
+     * @param string $path
+     * @param string $defaultUrl
      * @return string
      */
-    public function getMediaUrl($path, $defaultUrl): string
+    public function getMediaUrl(string|null $path, string $defaultUrl): string
     {
         return $this->{$path}
                     ? Storage::disk($this->mediaDisk())->url($this->{$path})
                     : $defaultUrl;
     }
-    
+
     /**
-     * @param string $photo
+     * @param string $sourceUrl
      * @param string $pathColumn
      * @param string $path
      * @return void
      */
     public function updateMediaByUrl(string $sourceUrl, string $pathColumn = 'profile_photo_path', string $path = 'profile-photos'): void
     {
-        tap($this->{$pathColumn}, function ($previous) use ($photo, $pathColumn, $path) {
+        tap($this->{$pathColumn}, function ($previous) use ($sourceUrl, $pathColumn, $path) {
             Storage::disk($this->mediaDisk())->put($name = sprintf('%s/%s', $path, Uuid::uuid4()), file_get_contents($sourceUrl), [
                 'visibility' => 'public'
             ]);
