@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Legal\LegalController;
 use App\Http\Controllers\Profile\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Http\Controllers\CurrentTeamController;
@@ -16,8 +17,9 @@ use Laravel\Jetstream\Jetstream;
 
 Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
     if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
-        Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
-        Route::get('/privacy-policy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
+        Route::get('/terms-of-service', [LegalController::class, 'showTerms'])->name('terms.show');
+        Route::get('/privacy-policy', [LegalController::class, 'showPolicy'])->name('policy.show');
+        Route::get('/imprint', [LegalController::class, 'showImprint'])->name('imprint.show');
     }
 
     Route::group(['middleware' => ['auth', 'verified']], function () {
