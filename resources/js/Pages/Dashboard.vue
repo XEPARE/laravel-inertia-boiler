@@ -13,7 +13,6 @@ const changeLocale = (lang) => {
   loadLanguageAsync(lang);
   locale.value = lang;
 }
-
 </script>
 
 <template>

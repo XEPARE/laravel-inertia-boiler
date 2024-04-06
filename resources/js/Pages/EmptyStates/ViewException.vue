@@ -1,5 +1,6 @@
 <script setup>
-import EmptyState from "@/Misc/EmptyState.vue";
+import EmptyState from "@/Casual/EmptyState.vue";
+import {trans} from "laravel-vue-i18n";
 
 defineProps({
   title: {
@@ -15,13 +16,13 @@ defineProps({
 
 <template>
   <!-- Use the layout component to define the page layout e.g. "AppLayout" -->
-  <div class="w-full">
+  <div class="w-full md:p-48 bg-gray-100 h-screen">
     <empty-state :width="'w-full'">
       <template #title>
-        {{ __(title) }}
+        {{ trans(title) }}
       </template>
       <template #description>
-        {{ __(message) }}
+        {{ trans(message) }}
       </template>
     </empty-state>
   </div>

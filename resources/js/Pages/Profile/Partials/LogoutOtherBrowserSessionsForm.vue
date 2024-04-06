@@ -53,7 +53,7 @@ const closeModal = () => {
         </template>
 
         <template #content>
-            <div class="max-w-xl text-sm text-gray-600">
+            <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400">
                 If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
             </div>
 
@@ -70,8 +70,8 @@ const closeModal = () => {
                         </svg>
                     </div>
 
-                    <div class="ml-3">
-                        <div class="text-sm text-gray-600">
+                    <div class="ms-3">
+                        <div class="text-sm text-gray-600 dark:text-gray-400">
                             {{ session.agent.platform ? session.agent.platform : 'Unknown' }} - {{ session.agent.browser ? session.agent.browser : 'Unknown' }}
                         </div>
 
@@ -92,7 +92,7 @@ const closeModal = () => {
                     Log Out Other Browser Sessions
                 </PrimaryButton>
 
-                <ActionMessage :on="form.recentlySuccessful" class="ml-3">
+                <ActionMessage :on="form.recentlySuccessful" class="ms-3">
                     Done.
                 </ActionMessage>
             </div>
@@ -127,7 +127,7 @@ const closeModal = () => {
                     </SecondaryButton>
 
                     <PrimaryButton
-                        class="ml-3"
+                        class="ms-3"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="logoutOtherBrowserSessions"

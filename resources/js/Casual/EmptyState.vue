@@ -1,28 +1,15 @@
-<template>
-    <div :class="width">
-        <div class="text-center bg-white m-4 sm:m-0 p-4 sm:p-12 rounded-lg" :class="shadowClass">
-            <component :is="computerDesktopIcon" class="mx-auto h-12 w-12 text-gray-400"/>
-            <h3 class="mt-2 text-base font-medium text-gray-900"><slot name="title"/></h3>
-            <p class="mt-1 text-sm text-gray-500"><slot name="description"/></p>
-            <div class="mt-6">
-                <slot name="actions"/>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup>
-import { defineComponent, h } from 'vue';
+import {defineComponent, h} from 'vue';
 
 defineProps({
-    width: {
-        type: String,
-        default: 'sm:w-1/3',
-    },
-    shadowClass: {
-        type: String,
-        default: 'shadow-md',
-    },
+  width: {
+    type: String,
+    default: 'sm:w-1/3',
+  },
+  shadowClass: {
+    type: String,
+    default: 'shadow-md',
+  },
 });
 
 const computerDesktopIcon = defineComponent({
@@ -45,3 +32,20 @@ const computerDesktopIcon = defineComponent({
   }
 });
 </script>
+
+<template>
+  <div :class="width">
+    <div class="text-center bg-white m-4 sm:m-0 p-4 sm:p-12 rounded-lg" :class="shadowClass">
+      <component :is="computerDesktopIcon" class="mx-auto h-12 w-12 text-gray-400"/>
+      <h3 class="mt-2 text-base font-medium text-gray-900">
+        <slot name="title"/>
+      </h3>
+      <p class="mt-1 text-sm text-gray-500">
+        <slot name="description"/>
+      </p>
+      <div class="mt-6">
+        <slot name="actions"/>
+      </div>
+    </div>
+  </div>
+</template>
